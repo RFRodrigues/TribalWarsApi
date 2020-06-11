@@ -1,53 +1,32 @@
-var firebase = require("firebase");
-var express = require("express");
-var bodyParser = require('body-parser');
-var app = express();
+const express = require("express");
+const app = express();
 
-var firebaseConfig = {
-  apiKey: "AIzaSyBbGn-CM2XXJAmhkTERlsGDRyYryij9D4g",
-  authDomain: "tribalwars-15493.firebaseapp.com",
-  databaseURL: "https://tribalwars-15493.firebaseio.com",
-  projectId: "tribalwars-15493",
-  storageBucket: "tribalwars-15493.appspot.com",
-  messagingSenderId: "1009323283348",
-  appId: "1:1009323283348:web:465fb1bed784908d33f581",
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const port = 5000;
 
-app.use(express.json());
+// Body parser
+app.use(express.urlencoded({ extended: false }));
 
-app.use(function (req, res, next) {
-  require('body-parser').urlencoded({ extended: false });
-  next();
-});
-
+// Home route
 app.get("/", (req, res) => {
-    res.send("Welcome to a basic express App");
-  });
-
-app.post("/usercreate", (req, res) => {
-
-  firebase
-    .database()
-    .ref("/users")
-    .push({ 
-      userinfo: { username: req.body.nickname, email: req.body.email, password: req.body.password },
-      resources: { wood: 0, iron: 0, clay: 0 },
-      buildings: { mainBuilding: 0, barrack: 0, warehouse: 0 }
-    });
-
-  res.sendStatus(200);
+  res.send("Welcome to a basic express App");
 });
 
-//get all users info
-app.get("/usersinfo", (req, res) => {
-  var db = firebase.database().ref("/users");
-  db.once("value", (snapshot) => {
-    var users = snapshot.val();
-    res.send(users);
-  });
+// Mock API
+app.get("/users", (req, res) => {
+  res.json([
+    { name: "William", location: "Abu Dhabi" },
+    { name: "Chris", location: "Vegas" }
+  ]);
 });
 
-app.listen(5000);
-console.log("API is running");
+app.post("/user", (req, res) => {
+  const { name, location } = req.body;
+
+  res.send({ status: "User created", name, location });
+});
+
+// Listen on port 5000
+app.listen(port, () => {
+  console.log(`Server is booming on port 5000
+Visit http://localhost:5000`);
+});

@@ -1,26 +1,17 @@
 {
-  "name": "TribalWarsApi",
+  "name": "now-express",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RFRodrigues/TribalWarsApi.git"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RFRodrigues/TribalWarsApi/issues"
-  },
-  "homepage": "https://github.com/RFRodrigues/TribalWarsApi#readme",
+  "author": "William Imoh",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "firebase": "^7.15.0",
-    "now": "^19.0.1"
+    "nodemon": "^1.19.1"
   }
 }
