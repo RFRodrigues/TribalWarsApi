@@ -34,10 +34,11 @@ app.get("/users", (req, res) => {
 
 app.get("/usersinfo", (req, res) => {
   var db = firebase.database().ref("/users");
+  var users = {};
   db.once("value", (snapshot) => {
-    var users = snapshot.val();
-    res.send(users);
+    users = snapshot.val();
   });
+  res.json(users);
 });
 
 app.post("/user", (req, res) => {
