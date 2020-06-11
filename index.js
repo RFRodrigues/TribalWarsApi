@@ -1,22 +1,8 @@
 const express = require("express");
 const app = express();
-const firebase = require("firebase");
 
 const port = 5000;
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBbGn-CM2XXJAmhkTERlsGDRyYryij9D4g",
-  authDomain: "tribalwars-15493.firebaseapp.com",
-  databaseURL: "https://tribalwars-15493.firebaseio.com",
-  projectId: "tribalwars-15493",
-  storageBucket: "tribalwars-15493.appspot.com",
-  messagingSenderId: "1009323283348",
-  appId: "1:1009323283348:web:465fb1bed784908d33f581",
-};
-
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
 // Body parser
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +19,6 @@ app.get("/users", (req, res) => {
     { name: "Chris", location: "Vegas" }
   ]);
 });
-
 
 
 app.post("/user", (req, res) => {
