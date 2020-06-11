@@ -2,11 +2,7 @@
 var express = require("express");
 var bodyParser = require('body-parser');
 var app = express();
-const MongoClient = require('mongodb').MongoClient;
 
-const uri = "mongodb+srv://admin:admin@cluster0-4hukz.gcp.mongodb.net/?retryWrites=true&w=majority";
-
-const client = new MongoClient(uri);
 
 // var firebaseConfig = {
 //   apiKey: "AIzaSyBbGn-CM2XXJAmhkTERlsGDRyYryij9D4g",
@@ -51,6 +47,11 @@ app.post("/usercreate", (req, res) => {
 
 //get all users info
 app.get("/usersinfo", async (req, res) => {
+  const MongoClient = require('mongodb').MongoClient;
+
+const uri = "mongodb+srv://admin:admin@cluster0-4hukz.gcp.mongodb.net/?retryWrites=true&w=majority";
+
+const client = new MongoClient(uri);
 
   MongoClient.connect(uri, {useUnifiedTopology: true, 
     useNewUrlParser: true}, function (err, db) {
