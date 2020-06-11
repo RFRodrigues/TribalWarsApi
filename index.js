@@ -40,7 +40,10 @@ app.get("/usersinfo", (req, res) => {
     var users = snapshot.val();
     
   });
-  res.send({users});
+  res.json([
+    { name: "William", location: "Abu Dhabi" },
+    { name: "Chris", location: "Vegas" }
+  ]);
 });
 
 app.post("/user", (req, res) => {
