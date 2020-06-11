@@ -52,7 +52,8 @@ app.post("/usercreate", (req, res) => {
 //get all users info
 app.get("/usersinfo", async (req, res) => {
 
-  MongoClient.connect(uri, function (err, db) {
+  MongoClient.connect(uri, {useUnifiedTopology: true, 
+    useNewUrlParser: true}, function (err, db) {
 
     var dbo = db.db("tribalwars");
 
