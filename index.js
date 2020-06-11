@@ -13,6 +13,8 @@ const firebaseConfig = {
   messagingSenderId: "1009323283348",
   appId: "1:1009323283348:web:465fb1bed784908d33f581",
 };
+
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -30,6 +32,15 @@ app.get("/users", (req, res) => {
     { name: "William", location: "Abu Dhabi" },
     { name: "Chris", location: "Vegas" }
   ]);
+});
+
+app.get("/usersinfo", (req, res) => {
+  var db = firebase.database().ref("/users");
+  db.once("value", (snapshot) => {
+    var users = snapshot.val();
+    
+  });
+  res.send({users});
 });
 
 app.post("/user", (req, res) => {
