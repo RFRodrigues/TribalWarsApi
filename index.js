@@ -36,7 +36,7 @@ MongoClient.connect(uri, function (err, db) {
 
   var dbo = db.db("tribalwars");
 
-  app.post("/api/usercreate/", (req, res) => {
+  app.post("/usercreate", (req, res) => {
 
 
     // firebase
@@ -52,7 +52,7 @@ MongoClient.connect(uri, function (err, db) {
   });
 
   //get all users info
-  app.get("/api/usersinfo/", async (req, res) => {
+  app.get("/usersinfo", async (req, res) => {
 
     dbo.collection("Users").find({}).toArray((err, result) => {
       if (err) {
