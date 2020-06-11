@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "name": "TribalWarsApi",
+    "alias": "tribalwarsthegameapi.now.sh",
+    "builds": [
+        { "src": "index.js", "use": "@now/node-server" }
+        
+    ],
+    "routes": [
+        {"src": "/", "dest": "index.js", "methods": ["GET"] },
+        {"src": "/usercreate", "dest": "index.js", "methods": ["POST"] },
+        {"src": "/usersinfo", "dest": "index.js", "methods": ["GET"] }
+    ]
+}
+  
