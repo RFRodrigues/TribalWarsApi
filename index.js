@@ -32,27 +32,29 @@ app.use(function (req, res, next) {
   next();
 });
 
-MongoClient.connect(uri, function (err, db) {
-
-  var dbo = db.db("tribalwars");
-
-  app.post("/usercreate", (req, res) => {
 
 
-    // firebase
-    //   .database()
-    //   .ref("/users")
-    //   .push({ 
-    //     userinfo: { username: req.body.nickname, email: req.body.email, password: req.body.password },
-    //     resources: { wood: 0, iron: 0, clay: 0 },
-    //     buildings: { mainBuilding: 0, barrack: 0, warehouse: 0 }
-    //   });
+app.post("/usercreate", (req, res) => {
 
-    //res.sendStatus(200);
-  });
 
-  //get all users info
-  app.get("/usersinfo", async (req, res) => {
+  // firebase
+  //   .database()
+  //   .ref("/users")
+  //   .push({ 
+  //     userinfo: { username: req.body.nickname, email: req.body.email, password: req.body.password },
+  //     resources: { wood: 0, iron: 0, clay: 0 },
+  //     buildings: { mainBuilding: 0, barrack: 0, warehouse: 0 }
+  //   });
+
+  //res.sendStatus(200);
+});
+
+//get all users info
+app.get("/usersinfo", async (req, res) => {
+
+  MongoClient.connect(uri, function (err, db) {
+
+    var dbo = db.db("tribalwars");
 
     dbo.collection("Users").find({}).toArray((err, result) => {
       if (err) {
@@ -67,10 +69,11 @@ MongoClient.connect(uri, function (err, db) {
     //   var users = snapshot.val();
     //   res.send(users);
     // });
-
   });
 
 });
+
+
 
 app.listen(5000);
 console.log("API is running");
