@@ -34,17 +34,7 @@ app.get("/users", (req, res) => {
   ]);
 });
 
-app.get("/usersinfo", (req, res) => {
-  var db = firebase.database().ref("/users");
-  db.once("value", (snapshot) => {
-    var users = snapshot.val();
-    
-  });
-  res.json([
-    { name: "William", location: "Abu Dhabi" },
-    { name: "Chris", location: "Vegas" }
-  ]);
-});
+
 
 app.post("/user", (req, res) => {
   const { name, location } = req.body;
